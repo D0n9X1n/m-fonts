@@ -24,15 +24,19 @@ echo "# m-fonts ${TAG}"
 echo
 echo "| Family | Spacing |"
 echo "|---|---|"
-for cfg in configs/*.yaml; do
-    (
-        eval "$(python3 scripts/fontconfig.py "$cfg")"
-        if [ "$MONO" = 1 ]; then
-            echo "| **${FAMILY}** | Monospace, code ligatures |"
-        else
-            echo "| **${FAMILY}** | Proportional |"
-        fi
-    )
+# Mono families first, then proportional
+for want in 1 0; do
+    for cfg in configs/*.yaml; do
+        (
+            eval "$(python3 scripts/fontconfig.py "$cfg")"
+            [ "$MONO" = "$want" ] || exit 0
+            if [ "$MONO" = 1 ]; then
+                echo "| **${FAMILY}** | Monospace, code ligatures |"
+            else
+                echo "| **${FAMILY}** | Proportional |"
+            fi
+        )
+    done
 done
 echo
 echo "Built from Recursive ${RECURSIVE_VERSION}, Resource Han Rounded ${RESOURCE_HAN_ROUNDED_VERSION}, and Nerd Fonts ${NERD_FONTS_VERSION}."
