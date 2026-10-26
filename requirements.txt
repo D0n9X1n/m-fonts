@@ -1,0 +1,5 @@
+fonttools==4.67.0
+opentype-feature-freezer==1.32.2
+pyyaml==6.0.3
+skia-pathops==0.9.2
+ttfautohint-py==0.6.1

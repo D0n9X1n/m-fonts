@@ -1,0 +1,40 @@
+name: Bug report
+description: A glyph, metric, or install problem in a released font
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: family
+    attributes:
+      label: Family
+      options:
+        - Rec Mono St.Helens
+        - Rec Sans Mt.Baker
+        - Both
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Release
+      placeholder: v2.0.0
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: OS and app
+      placeholder: macOS 26, Ghostty 1.2 / Windows 11, Windows Terminal 1.23
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: Include the text or codepoints involved and what you expected.
+    validations:
+      required: true
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot
+      description: Paste a screenshot that shows the problem.

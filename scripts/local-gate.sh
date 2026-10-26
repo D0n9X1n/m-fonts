@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# local-gate.sh — Run the CI checks locally before opening a pull request
+#
+# Usage:
+#   ./scripts/local-gate.sh           # fast checks (seconds)
+#   ./scripts/local-gate.sh --build   # also build and verify every family
+
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+if [ -f venv/bin/activate ]; then
+    source venv/bin/activate
+fi
+
+step() { echo "── $*"; }
+
+step "Shell syntax"
+for f in scripts/*.sh; do bash -n "$f"; done
+
+step "Python syntax"
+python3 -m py_compile scripts/*.py
+
+step "Configs"
+for cfg in configs/*.yaml; do python3 scripts/fontconfig.py "$cfg" > /dev/null; done
+
+step "Wiki"
+python3 scripts/check-wiki.py
+
+step "Wiki publisher"
+bash scripts/test-wiki-publish.sh
+
+step "Release notes"
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+echo "0000  example.ttf" > "$tmp/SHA256SUMS.txt"
+notes=$(./scripts/release-notes.sh HEAD "$tmp")
+grep -q '^## Checksums' <<< "$notes" || { echo "release notes are incomplete" >&2; exit 1; }
+
+if [ "${1:-}" = "--build" ]; then
+    step "Build and verify all families"
+    ./scripts/build-all.sh
+fi
+
+echo "local gate: ok"

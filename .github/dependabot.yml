@@ -1,0 +1,24 @@
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+    labels: ["dependencies", "python"]
+    # Patch bumps only. A minor fontTools release can change instancer or
+    # glyf output; bump those deliberately and compare a full build.
+    allow:
+      - dependency-type: "all"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 4
+    labels: ["dependencies", "ci"]
+    # Every action is pinned to a commit SHA; Dependabot advances the SHA and
+    # the trailing `# vX.Y.Z` comment together.

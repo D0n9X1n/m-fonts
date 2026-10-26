@@ -1,0 +1,10 @@
+.DS_Store
+venv/
+__pycache__/
+*.pyc
+
+# Downloaded upstream sources, build intermediates, and output
+sources/
+build/
+fonts/
+dist/

@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Nothing here writes to the repository, so the token every third-party action
+# inherits cannot be spent on one.
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event_name == 'pull_request' && github.ref || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  checks:
+    name: Scripts, configs, and wiki
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        # release-notes.sh looks up the previous tag
+        with:
+          fetch-depth: 0
+
+      - name: Create venv + install Python deps
+        run: |
+          python3 -m venv venv
+          venv/bin/pip install --quiet -r requirements.txt
+
+      - name: Run local gate
+        run: ./scripts/local-gate.sh
+
+  fonts:
+    name: Build and verify fonts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install FontForge + 7-Zip
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fontforge python3-fontforge p7zip-full
+
+      # FontForge-only stages run under `fontforge -script` (FontForge's own
+      # Python); everything else runs in this venv.
+      - name: Create venv + install Python deps
+        run: |
+          /usr/bin/python3 -m venv --system-site-packages venv
+          venv/bin/pip install --quiet -r requirements.txt
+
+      - name: Restore upstream sources
+        id: sources
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: sources
+          key: sources-${{ hashFiles('versions.env') }}
+
+      # Fetches any missing pinned sources, builds every family in configs/,
+      # and runs scripts/verify-fonts.py on the result.
+      - name: Build and verify all fonts
+        run: ./scripts/build-all.sh
+
+      - name: Save upstream sources
+        if: steps.sources.outputs.cache-hit != 'true'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: sources
+          key: sources-${{ hashFiles('versions.env') }}
+
+      - name: Upload fonts
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: fonts-${{ github.sha }}
+          path: fonts/*/*.ttf
+          retention-days: 14

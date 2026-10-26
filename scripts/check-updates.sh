@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# check-updates.sh — Compare the pinned upstream versions with the latest releases
+#
+# Usage:
+#   ./scripts/check-updates.sh
+#
+# Exits 1 if any pinned version is behind. Pre-releases are ignored.
+
+set -euo pipefail
+cd "$(dirname "$0")/.."
+source versions.env
+
+outdated=0
+
+check() {
+    local name=$1 repo=$2 pinned=$3 latest
+    latest=$(curl -fsSL "https://api.github.com/repos/${repo}/releases/latest" |
+        python3 -c 'import json, sys; print(json.load(sys.stdin)["tag_name"].lstrip("v"))')
+    if [ "$latest" = "$pinned" ]; then
+        echo "✓ ${name} ${pinned} is the latest release"
+    else
+        echo "↑ ${name} ${pinned} → ${latest} available (update versions.env)"
+        outdated=1
+    fi
+}
+
+check "Recursive" arrowtype/recursive "$RECURSIVE_VERSION"
+check "Resource Han Rounded" CyanoHao/Resource-Han-Rounded "$RESOURCE_HAN_ROUNDED_VERSION"
+check "Nerd Fonts" ryanoasis/nerd-fonts "$NERD_FONTS_VERSION"
+
+exit "$outdated"
