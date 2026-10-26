@@ -32,8 +32,9 @@ Select the family by name. Apps that cache their font list need a restart.
 
 ## Upgrade from older releases
 
-Releases before m-fonts v2.0.0 were published from `MOSconfig/recursive-code-config`
-and shipped **Rec Mono Baker**, a monospace linear family. Mt.Baker replaces it.
+Releases before m-fonts v2.0.0 came from `MOSconfig/recursive-code-config`, which
+has since been deleted, and shipped **Rec Mono Baker**, a monospace linear
+family. Mt.Baker replaces it.
 Before installing v2.0.0:
 
 1. Delete `RecMonoBaker-*.ttf` from your fonts folder.

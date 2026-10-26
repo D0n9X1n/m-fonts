@@ -30,7 +30,7 @@ shasum -a 256 --check SHA256SUMS.txt   # Linux：sha256sum --check SHA256SUMS.tx
 
 ## 从旧版本升级
 
-m-fonts v2.0.0 之前的版本发布在 `MOSconfig/recursive-code-config`，其中的
+m-fonts v2.0.0 之前的版本发布在 `MOSconfig/recursive-code-config`（该仓库已删除），其中的
 **Rec Mono Baker** 是等宽的直线风格字体，现由 Mt.Baker 取代。安装 v2.0.0 之前：
 
 1. 从字体文件夹删除 `RecMonoBaker-*.ttf`。
