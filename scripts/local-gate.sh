@@ -23,6 +23,17 @@ python3 -m py_compile scripts/*.py
 step "Configs"
 for cfg in configs/*.yaml; do python3 scripts/fontconfig.py "$cfg" > /dev/null; done
 
+step "Upstream versions in docs"
+source versions.env
+for pin in "Recursive-${RECURSIVE_VERSION}" "Resource_Han_Rounded-${RESOURCE_HAN_ROUNDED_VERSION}" "Nerd_Fonts-${NERD_FONTS_VERSION}"; do
+    grep -q "badge/${pin}-" README.md || { echo "README.md badge does not match versions.env: ${pin}" >&2; exit 1; }
+done
+for page in wiki/Configuration.md wiki/Configuration-zh-CN.md; do
+    for line in "RECURSIVE_VERSION=${RECURSIVE_VERSION}" "RESOURCE_HAN_ROUNDED_VERSION=${RESOURCE_HAN_ROUNDED_VERSION}" "NERD_FONTS_VERSION=${NERD_FONTS_VERSION}"; do
+        grep -qx "$line" "$page" || { echo "${page} does not match versions.env: ${line}" >&2; exit 1; }
+    done
+done
+
 step "Wiki"
 python3 scripts/check-wiki.py
 

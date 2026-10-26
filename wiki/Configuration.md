@@ -67,8 +67,10 @@ NERD_FONTS_VERSION=3.5.1
 
 `./scripts/check-updates.sh` compares these with the latest GitHub releases,
 ignoring pre-releases, and exits 1 if any is behind. To update one, change the
-version, run `./scripts/local-gate.sh --build`, and check the result in an
-editor before merging.
+version, also update the version badges in `README.md` and the block above in
+both Configuration pages (the local gate fails until they match), run
+`./scripts/local-gate.sh --build`, and check the result in an editor before
+merging.
 
 ## Adding a family
 
