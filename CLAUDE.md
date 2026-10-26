@@ -34,5 +34,6 @@ against the current scripts and configs before writing them.
 ./scripts/check-updates.sh         # compare versions.env with upstream releases
 ```
 
-Run `./scripts/local-gate.sh --build` before opening a pull request that changes
-font output.
+Run `./scripts/local-gate.sh --build` before pushing a change to font output, then
+regenerate the images with `python3 scripts/render-previews.py` and commit
+`docs/previews/`.

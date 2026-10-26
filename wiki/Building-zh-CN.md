@@ -45,6 +45,19 @@ pip install -r requirements.txt
 每个目录在 `.version` 中记录版本；在 `versions.env` 改变之前，后续构建会跳过下载。
 `sources/`、`build/` 和 `fonts/` 均被 git 忽略。
 
+## 预览图
+
+`README.md` 和[字体](Fonts-zh-CN)页面中的图片位于 `docs/previews/`。改动影响字体输出后，
+用构建出的字体重新生成并提交：
+
+```bash
+python3 scripts/render-previews.py            # 读取 fonts/
+python3 scripts/render-previews.py <目录>     # 或结构相同的其他目录
+```
+
+每张预览图分别使用 Apollo 深色和浅色配色。文字经 Pillow 调用 HarfBuzz 排版，
+连字、中日文和图标的显示效果与应用中一致。
+
 ## 检查
 
 ```bash

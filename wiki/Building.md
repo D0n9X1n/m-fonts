@@ -47,6 +47,21 @@ pinned in `versions.env` into `sources/`:
 Each directory records its version in `.version`; later builds skip the download
 until `versions.env` changes. `sources/`, `build/`, and `fonts/` are git-ignored.
 
+## Preview images
+
+The images in `README.md` and on the [Fonts](Fonts) page live in `docs/previews/`.
+After any change that affects font output, regenerate them from the built fonts
+and commit the result:
+
+```bash
+python3 scripts/render-previews.py            # reads fonts/
+python3 scripts/render-previews.py <dir>      # or another folder with the same layout
+```
+
+Each preview is written in the Apollo dark and light palettes. Text is shaped
+with HarfBuzz through Pillow, so ligatures, CJK, and icons appear as they do in
+apps.
+
 ## Checks
 
 ```bash

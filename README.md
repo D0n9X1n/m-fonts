@@ -18,6 +18,11 @@
 [![Font license: OFL-1.1](https://img.shields.io/badge/font_license-OFL_1.1-lightgreen.svg)](https://openfontlicense.org)
 [![Script license: MIT](https://img.shields.io/badge/script_license-MIT-blue.svg)](LICENSE)
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/previews/hero-dark.png">
+  <img alt="Rec Mono St.Helens and Rec Sans Mt.Baker" src="docs/previews/hero-light.png" width="800">
+</picture>
+
 Two font families built from [Recursive](https://recursive.design), with CJK glyphs from [Resource Han Rounded (资源圆体)](https://github.com/CyanoHao/Resource-Han-Rounded) and the full [Nerd Fonts](https://www.nerdfonts.com/) icon set.
 
 | Family | Use | Spacing |
@@ -26,6 +31,52 @@ Two font families built from [Recursive](https://recursive.design), with CJK gly
 | **Rec Sans Mt.Baker** | Everyday text and UI | Proportional |
 
 Both families use the same casual, cursive design in four styles: Regular, Italic, Bold, and Bold Italic.
+
+## Preview
+
+### Code
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/previews/code-dark.png">
+  <img alt="TypeScript in Rec Mono St.Helens with code ligatures and italic keywords" src="docs/previews/code-light.png" width="800">
+</picture>
+
+### Terminal
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/previews/terminal-dark.png">
+  <img alt="A shell prompt with Powerline segments, Nerd Font icons, and a CJK table aligned on the cell grid" src="docs/previews/terminal-light.png" width="800">
+</picture>
+
+### Ligatures
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/previews/ligatures-dark.png">
+  <img alt="Thirty code ligatures in Rec Mono St.Helens" src="docs/previews/ligatures-light.png" width="800">
+</picture>
+
+### Styles
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/previews/styles-dark.png">
+  <img alt="Regular, Italic, Bold, and Bold Italic of both families" src="docs/previews/styles-light.png" width="800">
+</picture>
+
+### Text
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/previews/text-dark.png">
+  <img alt="English, Chinese, and Japanese paragraphs in Rec Sans Mt.Baker" src="docs/previews/text-light.png" width="800">
+</picture>
+
+### Glyph coverage
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/previews/glyphs-dark.png">
+  <img alt="Glyph coverage: Latin, Vietnamese, mathematical Greek, CJK, kana, box drawing, Powerline, and Nerd Font icons" src="docs/previews/glyphs-light.png" width="800">
+</picture>
+
+Images are rendered from the release fonts by `scripts/render-previews.py`.
 
 ## Install
 

@@ -5,6 +5,50 @@
 m-fonts 提供两套共用同一设计的字体。St.Helens 用于写代码；Mt.Baker 是相同的字形，
 但使用自然字宽，用于日常文本。
 
+## 预览
+
+### 样式
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/styles-dark.png">
+  <img alt="Regular, Italic, Bold, and Bold Italic of both families" src="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/styles-light.png" width="800">
+</picture>
+
+### 代码
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/code-dark.png">
+  <img alt="TypeScript in Rec Mono St.Helens with code ligatures and italic keywords" src="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/code-light.png" width="800">
+</picture>
+
+### 终端
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/terminal-dark.png">
+  <img alt="A shell prompt with Powerline segments, Nerd Font icons, and a CJK table aligned on the cell grid" src="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/terminal-light.png" width="800">
+</picture>
+
+### 连字
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/ligatures-dark.png">
+  <img alt="Thirty code ligatures in Rec Mono St.Helens" src="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/ligatures-light.png" width="800">
+</picture>
+
+### 文本
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/text-dark.png">
+  <img alt="English, Chinese, and Japanese paragraphs in Rec Sans Mt.Baker" src="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/text-light.png" width="800">
+</picture>
+
+### 字形覆盖
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/glyphs-dark.png">
+  <img alt="Glyph coverage: Latin, Vietnamese, mathematical Greek, CJK, kana, box drawing, Powerline, and Nerd Font icons" src="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/glyphs-light.png" width="800">
+</picture>
+
 ## 字体家族
 
 | 字体 | 用途 | 字宽 | 代码连字 |
@@ -34,7 +78,7 @@ Recursive 的 ss01–ss06 只作用于正体（`CRSV 0`）字形，因此在 `CR
 
 | 来源 | 覆盖范围 |
 |---|---|
-| Recursive | 拉丁、希腊、西里尔字母、标点和符号 |
+| Recursive | 拉丁字母（含越南语）、20 个数学用希腊字母、制表符、方块、标点和符号。不含西里尔字母。 |
 | 资源圆体 CN | 汉字（U+4E00–9FFF 中 20,976 个）、假名、CJK 标点、全角和半角字符 |
 | Nerd Fonts | 补丁工具 `--complete` 选项加入的全部图标集，包括 Powerline |
 

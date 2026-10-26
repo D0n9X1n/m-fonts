@@ -5,6 +5,50 @@
 m-fonts ships two families that share one design. St.Helens is for code; Mt.Baker
 is the same letterforms with natural widths for everyday text.
 
+## Preview
+
+### Styles
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/styles-dark.png">
+  <img alt="Regular, Italic, Bold, and Bold Italic of both families" src="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/styles-light.png" width="800">
+</picture>
+
+### Code
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/code-dark.png">
+  <img alt="TypeScript in Rec Mono St.Helens with code ligatures and italic keywords" src="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/code-light.png" width="800">
+</picture>
+
+### Terminal
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/terminal-dark.png">
+  <img alt="A shell prompt with Powerline segments, Nerd Font icons, and a CJK table aligned on the cell grid" src="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/terminal-light.png" width="800">
+</picture>
+
+### Ligatures
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/ligatures-dark.png">
+  <img alt="Thirty code ligatures in Rec Mono St.Helens" src="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/ligatures-light.png" width="800">
+</picture>
+
+### Text
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/text-dark.png">
+  <img alt="English, Chinese, and Japanese paragraphs in Rec Sans Mt.Baker" src="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/text-light.png" width="800">
+</picture>
+
+### Glyph coverage
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/glyphs-dark.png">
+  <img alt="Glyph coverage: Latin, Vietnamese, mathematical Greek, CJK, kana, box drawing, Powerline, and Nerd Font icons" src="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/glyphs-light.png" width="800">
+</picture>
+
 ## Families
 
 | Family | Use | Spacing | Code ligatures |
@@ -35,7 +79,7 @@ can reuse it.
 
 | Source | Coverage |
 |---|---|
-| Recursive | Latin, Greek, Cyrillic, punctuation, and symbols |
+| Recursive | Latin (including Vietnamese), 20 mathematical Greek letters, box drawing, blocks, punctuation, and symbols. No Cyrillic. |
 | Resource Han Rounded CN | CJK ideographs (20,976 in U+4E00–9FFF), kana, CJK punctuation, full-width and halfwidth forms |
 | Nerd Fonts | Every icon set the patcher's `--complete` option adds, including Powerline |
 
