@@ -60,7 +60,7 @@ m-fonts 提供两套共用同一设计的字体。St.Helens 用于写代码；Mt
 
 ## 共同设计
 
-两套字体来自同一份配置（`configs/st-helens.yaml`）；Mt.Baker 只改了名称和字宽。
+两套字体来自同一份配置（`configs/st-helens.yaml`）；Mt.Baker 改了名称和字宽，并去掉带点的零。
 见[配置](Configuration-zh-CN)。
 
 | 设置 | 值 |
@@ -69,7 +69,7 @@ m-fonts 提供两套共用同一设计的字体。St.Helens 用于写代码；Mt
 | 手写体（`CRSV`） | 1 — 手写体字形 |
 | 倾斜（`slnt`） | Regular 和 Bold 为 -4°，Italic 和 Bold Italic 为 -10° |
 | 字重（`wght`） | Regular 和 Italic 为 400，Bold 和 Bold Italic 为 600 |
-| 风格集 | ss01–ss12，包括带点的零（ss10） |
+| 风格集 | ss01–ss12；Mt.Baker 不含 ss10，因此 St.Helens 的零带点，Mt.Baker 的零不带点 |
 
 Recursive 的 ss01–ss06 只作用于正体（`CRSV 0`）字形，因此在 `CRSV 1` 下看不出变化。
 它们保留在配置里，方便正体字体复用。

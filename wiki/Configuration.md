@@ -16,6 +16,7 @@ Each family is one YAML file in `configs/`. Upstream versions live in
 | `Styles` | `CASL`, `wght`, `slnt`, and `CRSV` for each of Regular, Italic, Bold, and Bold Italic |
 | `Code Ligatures` | Turn Recursive's code ligatures on by default. Applied to mono families only. |
 | `Features` | Stylistic sets frozen into the fonts |
+| `Exclude Features` | Stylistic sets to remove from the inherited `Features` |
 
 `configs/mt-baker.yaml` starts from St.Helens:
 
@@ -24,11 +25,15 @@ Extends: st-helens.yaml
 
 Family Name: Rec Sans Mt.Baker
 Mono: false
+
+Exclude Features:
+  - ss10  # Dotted 0
 ```
 
 `Extends` loads the named file first; keys in the extending file replace the
-parent's. Any change to St.Helens's styles or features therefore applies to
-Mt.Baker too.
+parent's. `Exclude Features` then removes sets from the inherited `Features`;
+naming a set that is not enabled is an error. Any other change to St.Helens's
+styles or features therefore applies to Mt.Baker too.
 
 ## Code ligatures
 

@@ -71,5 +71,5 @@ after CI passes.
 | Bump | When |
 |---|---|
 | Major | A family is renamed or removed, or its spacing or design defaults change |
-| Minor | An upstream version changes, or a family or glyph coverage is added |
+| Minor | An upstream version or a stylistic set changes, or a family or glyph coverage is added |
 | Patch | Metadata, naming, or build fixes that leave the glyphs unchanged |

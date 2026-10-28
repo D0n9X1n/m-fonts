@@ -61,7 +61,7 @@ Each family has four styles: Regular, Italic, Bold, and Bold Italic.
 ## Shared design
 
 Both families come from one config (`configs/st-helens.yaml`); Mt.Baker changes
-only its name and spacing. See [Configuration](Configuration).
+its name and spacing and drops the dotted zero. See [Configuration](Configuration).
 
 | Setting | Value |
 |---|---|
@@ -69,7 +69,7 @@ only its name and spacing. See [Configuration](Configuration).
 | Cursive (`CRSV`) | 1 — cursive letterforms |
 | Slant (`slnt`) | -4° for Regular and Bold, -10° for Italic and Bold Italic |
 | Weight (`wght`) | 400 for Regular and Italic, 600 for Bold and Bold Italic |
-| Stylistic sets | ss01–ss12, including the dotted zero (ss10) |
+| Stylistic sets | ss01–ss12; Mt.Baker leaves out ss10, so St.Helens has a dotted zero and Mt.Baker a plain one |
 
 Recursive's ss01–ss06 alternates apply only to Roman (`CRSV 0`) glyphs, so they
 have no visible effect with `CRSV 1`. They stay in the config so a Roman family

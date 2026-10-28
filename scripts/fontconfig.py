@@ -2,7 +2,7 @@
 """Load a family config from configs/*.yaml.
 
 A config can start from another with `Extends: <file>`; its own keys replace
-the parent's.
+the parent's. `Exclude Features` removes entries from the inherited `Features`.
 
 Run as a script, it prints shell assignments for build.sh:
 
@@ -44,6 +44,12 @@ def load(path):
             raise ValueError(f"{path}: {style} is missing {', '.join(sorted(missing))}")
     axes = {style: {**styles[style], "MONO": 1 if mono else 0} for style in STYLES}
 
+    features = list(cfg.get("Features") or [])
+    excluded = list(cfg.get("Exclude Features") or [])
+    unknown = sorted(set(excluded) - set(features))
+    if unknown:
+        raise ValueError(f"{path}: Exclude Features lists features that are not enabled: {', '.join(unknown)}")
+
     return {
         "family": family,
         "compact": family.replace(" ", ""),
@@ -51,7 +57,7 @@ def load(path):
         # Code ligatures are re-spaced onto the mono cell grid (see dlig2calt.py),
         # which would squash every glyph wider than a space in a proportional font.
         "ligatures": mono and bool(cfg.get("Code Ligatures", False)),
-        "features": list(cfg.get("Features") or []),
+        "features": [f for f in features if f not in excluded],
         "axes": axes,
     }
 

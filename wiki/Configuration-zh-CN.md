@@ -15,6 +15,7 @@
 | `Styles` | Regular、Italic、Bold、Bold Italic 各自的 `CASL`、`wght`、`slnt` 和 `CRSV` |
 | `Code Ligatures` | 默认开启 Recursive 的代码连字。只对等宽字体生效。 |
 | `Features` | 固化进字体的风格集 |
+| `Exclude Features` | 从继承的 `Features` 中移除的风格集 |
 
 `configs/mt-baker.yaml` 以 St.Helens 为基础：
 
@@ -23,10 +24,14 @@ Extends: st-helens.yaml
 
 Family Name: Rec Sans Mt.Baker
 Mono: false
+
+Exclude Features:
+  - ss10  # Dotted 0
 ```
 
-`Extends` 先加载指定文件，再用当前文件中的键覆盖父配置。因此对 St.Helens 样式或
-风格集的修改也会作用到 Mt.Baker。
+`Extends` 先加载指定文件，再用当前文件中的键覆盖父配置。`Exclude Features` 随后从继承的
+`Features` 中移除风格集；列出未启用的风格集会报错。因此对 St.Helens 样式或风格集的其他修改
+也会作用到 Mt.Baker。
 
 ## 代码连字
 

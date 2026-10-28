@@ -20,7 +20,8 @@ against the current scripts and configs before writing them.
 ## Rules
 
 - `configs/st-helens.yaml` is the shared design. Mt.Baker extends it and changes
-  only its name and `Mono: false`; keep it that way unless asked otherwise.
+  only its name, `Mono: false`, and `Exclude Features: [ss10]` (plain zero); keep
+  it that way unless asked otherwise.
 - Upstream versions live only in `versions.env`. Never vendor upstream fonts or
   the Nerd Fonts patcher into the repository; `sources/` is fetched and ignored.
 - Python dependencies are pinned exactly in `requirements.txt`.
