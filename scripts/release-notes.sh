@@ -11,7 +11,7 @@ cd "$(dirname "$0")/.."
 
 TAG="${1:?usage: $0 <tag> <dist_dir>}"
 DIST="${2:?usage: $0 <tag> <dist_dir>}"
-REPO="${GITHUB_REPOSITORY:-D0n9X1n/m-fonts}"
+REPO="${GITHUB_REPOSITORY:-D0n9X1n/rec-mountain-fonts}"
 source versions.env
 
 if [ ! -f "$DIST/SHA256SUMS.txt" ]; then
@@ -20,7 +20,7 @@ if [ ! -f "$DIST/SHA256SUMS.txt" ]; then
 fi
 previous=$(git describe --tags --abbrev=0 "${TAG}^" 2> /dev/null || true)
 
-echo "# m-fonts ${TAG}"
+echo "# Rec Mountain Fonts ${TAG}"
 echo
 echo "| Family | Spacing |"
 echo "|---|---|"
@@ -43,14 +43,14 @@ echo "Built from Recursive ${RECURSIVE_VERSION}, Resource Han Rounded ${RESOURCE
 echo
 echo "## Install"
 echo
-echo "Download the \`.ttf\` files or \`m-fonts-${TAG}.zip\` below. See [Installation](https://github.com/${REPO}/wiki/Installation)."
+echo "Download the \`.ttf\` files or \`rec-mountain-fonts-${TAG}.zip\` below. See [Installation](https://github.com/${REPO}/wiki/Installation)."
 echo
 echo "## Changes"
 echo
 if [ -n "$previous" ]; then
     git log --no-merges --format='- %s (%h)' "${previous}..${TAG}"
 else
-    echo "- First release of m-fonts."
+    echo "- First release."
 fi
 echo
 echo "## Checksums"

@@ -39,7 +39,7 @@ flowchart TD
 |---|---|
 | `RecMonoSt.Helens-*.ttf` | St.Helens 四种样式 |
 | `RecSansMt.Baker-*.ttf` | Mt.Baker 四种样式 |
-| `m-fonts-<tag>.zip` | 全部八个字体 |
+| `rec-mountain-fonts-<tag>.zip` | 全部八个字体 |
 | `SHA256SUMS.txt` | 每个字体和压缩包的 SHA-256 |
 
 `scripts/release-notes.sh` 生成发布说明：字体列表、`versions.env` 中的上游版本、

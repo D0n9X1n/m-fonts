@@ -3,8 +3,8 @@
 [简体中文](Installation-zh-CN)
 
 Download the fonts from the
-[latest release](https://github.com/D0n9X1n/m-fonts/releases/latest). Each
-release has the eight `.ttf` files, `m-fonts-<tag>.zip` with all eight, and
+[latest release](https://github.com/D0n9X1n/rec-mountain-fonts/releases/latest). Each
+release has the eight `.ttf` files, `rec-mountain-fonts-<tag>.zip` with all eight, and
 `SHA256SUMS.txt`.
 
 ## Install
@@ -32,7 +32,7 @@ Select the family by name. Apps that cache their font list need a restart.
 
 ## Upgrade from older releases
 
-Releases before m-fonts v2.0.0 came from `MOSconfig/recursive-code-config`, which
+Releases before v2.0.0 came from `MOSconfig/recursive-code-config`, which
 has since been deleted, and shipped **Rec Mono Baker**, a monospace linear
 family. Mt.Baker replaces it.
 Before installing v2.0.0:

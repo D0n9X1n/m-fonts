@@ -2,8 +2,8 @@
 
 [English](Installation)
 
-从[最新发布](https://github.com/D0n9X1n/m-fonts/releases/latest)下载字体。每个发布包含
-八个 `.ttf` 文件、含全部八个文件的 `m-fonts-<tag>.zip`，以及 `SHA256SUMS.txt`。
+从[最新发布](https://github.com/D0n9X1n/rec-mountain-fonts/releases/latest)下载字体。每个发布包含
+八个 `.ttf` 文件、含全部八个文件的 `rec-mountain-fonts-<tag>.zip`，以及 `SHA256SUMS.txt`。
 
 ## 安装字体
 
@@ -30,7 +30,7 @@ shasum -a 256 --check SHA256SUMS.txt   # Linux：sha256sum --check SHA256SUMS.tx
 
 ## 从旧版本升级
 
-m-fonts v2.0.0 之前的版本发布在 `MOSconfig/recursive-code-config`（该仓库已删除），其中的
+v2.0.0 之前的版本发布在 `MOSconfig/recursive-code-config`（该仓库已删除），其中的
 **Rec Mono Baker** 是等宽的直线风格字体，现由 Mt.Baker 取代。安装 v2.0.0 之前：
 
 1. 从字体文件夹删除 `RecMonoBaker-*.ttf`。

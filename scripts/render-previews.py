@@ -235,7 +235,7 @@ def render_terminal(fam, card):
     def prompt(y, command):
         segments = [
             (f" {ICONS['apple']} ", "bright", "selection"),
-            (f" {ICONS['folder']} ~/m-fonts ", "canvas", "blue"),
+            (f" {ICONS['folder']} ~/rec-mountain-fonts ", "canvas", "blue"),
             (f" {ICONS['branch']} main {ICONS['check']} ", "canvas", "green"),
         ]
         x = x0

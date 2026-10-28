@@ -1,6 +1,6 @@
-# CLAUDE.md — m-fonts
+# CLAUDE.md — Rec Mountain Fonts
 
-m-fonts builds two font families from Recursive, Resource Han Rounded, and Nerd
+Rec Mountain Fonts builds two font families from Recursive, Resource Han Rounded, and Nerd
 Fonts: **Rec Mono St.Helens** (monospace, for code) and **Rec Sans Mt.Baker**
 (proportional, for text). Both share one design.
 
@@ -26,6 +26,11 @@ against the current scripts and configs before writing them.
   the Nerd Fonts patcher into the repository; `sources/` is fetched and ignored.
 - Python dependencies are pinned exactly in `requirements.txt`.
 - Workflow actions are pinned to commit SHAs with a trailing `# vX.Y.Z` comment.
+- The preview images in `README.md` and `wiki/Fonts*.md` come from
+  `docs/previews/`. After any change to fonts, configs, or
+  `scripts/render-previews.py`, rebuild, run `python3 scripts/render-previews.py`,
+  look at every changed image, and commit them in the same change. Every
+  preview must appear in `README.md`; the local gate checks this.
 
 ## Commands
 
@@ -35,6 +40,4 @@ against the current scripts and configs before writing them.
 ./scripts/check-updates.sh         # compare versions.env with upstream releases
 ```
 
-Run `./scripts/local-gate.sh --build` before pushing a change to font output, then
-regenerate the images with `python3 scripts/render-previews.py` and commit
-`docs/previews/`.
+Run `./scripts/local-gate.sh --build` before pushing a change to font output.

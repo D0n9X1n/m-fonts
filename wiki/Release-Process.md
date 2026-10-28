@@ -42,7 +42,7 @@ validation.
 |---|---|
 | `RecMonoSt.Helens-*.ttf` | Four St.Helens styles |
 | `RecSansMt.Baker-*.ttf` | Four Mt.Baker styles |
-| `m-fonts-<tag>.zip` | All eight fonts |
+| `rec-mountain-fonts-<tag>.zip` | All eight fonts |
 | `SHA256SUMS.txt` | SHA-256 of every font and the zip |
 
 `scripts/release-notes.sh` writes the notes: the families, the upstream

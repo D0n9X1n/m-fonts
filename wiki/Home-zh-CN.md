@@ -1,8 +1,8 @@
-# m-fonts 百科
+# Rec Mountain Fonts 百科
 
 [English](Home)
 
-m-fonts 基于 [Recursive](https://recursive.design) 构建两套字体，
+Rec Mountain Fonts 基于 [Recursive](https://recursive.design) 构建两套字体，
 并合入资源圆体（Resource Han Rounded）的中日文字形和完整的 Nerd Fonts 图标集。
 **先读[安装](Installation-zh-CN)**，把字体装到你的电脑上。
 

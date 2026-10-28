@@ -34,6 +34,14 @@ for page in wiki/Configuration.md wiki/Configuration-zh-CN.md; do
     done
 done
 
+step "Preview images in README"
+for img in docs/previews/*.png; do
+    grep -q "$img" README.md || { echo "README.md does not show ${img}" >&2; exit 1; }
+done
+for img in $(grep -o 'docs/previews/[a-z-]*\.png' README.md | sort -u); do
+    [ -f "$img" ] || { echo "README.md references missing ${img}" >&2; exit 1; }
+done
+
 step "Wiki"
 python3 scripts/check-wiki.py
 

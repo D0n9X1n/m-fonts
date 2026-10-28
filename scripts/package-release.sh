@@ -4,7 +4,7 @@
 # Usage:
 #   ./scripts/package-release.sh <tag>
 #
-# Writes dist/*.ttf, dist/m-fonts-<tag>.zip, and dist/SHA256SUMS.txt.
+# Writes dist/*.ttf, dist/rec-mountain-fonts-<tag>.zip, and dist/SHA256SUMS.txt.
 
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -26,7 +26,7 @@ cp "${fonts[@]}" dist/
 
 (
     cd dist
-    zip -q -X "m-fonts-${TAG}.zip" ./*.ttf
+    zip -q -X "rec-mountain-fonts-${TAG}.zip" ./*.ttf
     if command -v sha256sum > /dev/null; then
         sha256sum ./*.ttf ./*.zip | sed 's| \./| |' > SHA256SUMS.txt
     else

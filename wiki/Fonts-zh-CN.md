@@ -2,7 +2,7 @@
 
 [English](Fonts)
 
-m-fonts 提供两套共用同一设计的字体。St.Helens 用于写代码；Mt.Baker 是相同的字形，
+Rec Mountain Fonts 提供两套共用同一设计的字体。St.Helens 用于写代码；Mt.Baker 是相同的字形，
 但使用自然字宽，用于日常文本。
 
 ## 预览
@@ -10,43 +10,43 @@ m-fonts 提供两套共用同一设计的字体。St.Helens 用于写代码；Mt
 ### 样式
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/styles-dark.png">
-  <img alt="Regular, Italic, Bold, and Bold Italic of both families" src="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/styles-light.png" width="800">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/rec-mountain-fonts/main/docs/previews/styles-dark.png">
+  <img alt="Regular, Italic, Bold, and Bold Italic of both families" src="https://raw.githubusercontent.com/D0n9X1n/rec-mountain-fonts/main/docs/previews/styles-light.png" width="800">
 </picture>
 
 ### 代码
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/code-dark.png">
-  <img alt="TypeScript in Rec Mono St.Helens with code ligatures and italic keywords" src="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/code-light.png" width="800">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/rec-mountain-fonts/main/docs/previews/code-dark.png">
+  <img alt="TypeScript in Rec Mono St.Helens with code ligatures and italic keywords" src="https://raw.githubusercontent.com/D0n9X1n/rec-mountain-fonts/main/docs/previews/code-light.png" width="800">
 </picture>
 
 ### 终端
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/terminal-dark.png">
-  <img alt="A shell prompt with Powerline segments, Nerd Font icons, and a CJK table aligned on the cell grid" src="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/terminal-light.png" width="800">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/rec-mountain-fonts/main/docs/previews/terminal-dark.png">
+  <img alt="A shell prompt with Powerline segments, Nerd Font icons, and a CJK table aligned on the cell grid" src="https://raw.githubusercontent.com/D0n9X1n/rec-mountain-fonts/main/docs/previews/terminal-light.png" width="800">
 </picture>
 
 ### 连字
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/ligatures-dark.png">
-  <img alt="Thirty code ligatures in Rec Mono St.Helens" src="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/ligatures-light.png" width="800">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/rec-mountain-fonts/main/docs/previews/ligatures-dark.png">
+  <img alt="Thirty code ligatures in Rec Mono St.Helens" src="https://raw.githubusercontent.com/D0n9X1n/rec-mountain-fonts/main/docs/previews/ligatures-light.png" width="800">
 </picture>
 
 ### 文本
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/text-dark.png">
-  <img alt="English, Chinese, and Japanese paragraphs in Rec Sans Mt.Baker" src="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/text-light.png" width="800">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/rec-mountain-fonts/main/docs/previews/text-dark.png">
+  <img alt="English, Chinese, and Japanese paragraphs in Rec Sans Mt.Baker" src="https://raw.githubusercontent.com/D0n9X1n/rec-mountain-fonts/main/docs/previews/text-light.png" width="800">
 </picture>
 
 ### 字形覆盖
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/glyphs-dark.png">
-  <img alt="Glyph coverage: Latin, Vietnamese, mathematical Greek, CJK, kana, box drawing, Powerline, and Nerd Font icons" src="https://raw.githubusercontent.com/D0n9X1n/m-fonts/main/docs/previews/glyphs-light.png" width="800">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/rec-mountain-fonts/main/docs/previews/glyphs-dark.png">
+  <img alt="Glyph coverage: Latin, Vietnamese, mathematical Greek, CJK, kana, box drawing, Powerline, and Nerd Font icons" src="https://raw.githubusercontent.com/D0n9X1n/rec-mountain-fonts/main/docs/previews/glyphs-light.png" width="800">
 </picture>
 
 ## 字体家族

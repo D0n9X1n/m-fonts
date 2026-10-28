@@ -1,8 +1,8 @@
-# m-fonts Wiki
+# Rec Mountain Fonts Wiki
 
 [简体中文](Home-zh-CN)
 
-m-fonts builds two font families from [Recursive](https://recursive.design),
+Rec Mountain Fonts builds two font families from [Recursive](https://recursive.design),
 with CJK glyphs from Resource Han Rounded and the full Nerd Fonts icon set.
 **Start with [Installation](Installation)** to get the fonts onto your machine.
 
