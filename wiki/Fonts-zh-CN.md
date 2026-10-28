@@ -67,7 +67,7 @@ Rec Mountain Fonts 提供两套共用同一设计的字体。St.Helens 用于写
 |---|---|
 | 休闲度（`CASL`） | 1 — Recursive 的休闲笔刷风格 |
 | 手写体（`CRSV`） | 1 — 手写体字形 |
-| 倾斜（`slnt`） | Regular 和 Bold 为 -4°，Italic 和 Bold Italic 为 -10° |
+| 倾斜（`slnt`） | Regular 和 Bold 为 -2°，Italic 和 Bold Italic 为 -10° |
 | 字重（`wght`） | Regular 和 Italic 为 400，Bold 和 Bold Italic 为 600 |
 | 风格集 | ss01–ss12；Mt.Baker 不含 ss10，因此 St.Helens 的零带点，Mt.Baker 的零不带点 |
 

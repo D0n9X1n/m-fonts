@@ -67,7 +67,7 @@ its name and spacing and drops the dotted zero. See [Configuration](Configuratio
 |---|---|
 | Casual (`CASL`) | 1 — the casual, brush-like Recursive design |
 | Cursive (`CRSV`) | 1 — cursive letterforms |
-| Slant (`slnt`) | -4° for Regular and Bold, -10° for Italic and Bold Italic |
+| Slant (`slnt`) | -2° for Regular and Bold, -10° for Italic and Bold Italic |
 | Weight (`wght`) | 400 for Regular and Italic, 600 for Bold and Bold Italic |
 | Stylistic sets | ss01–ss12; Mt.Baker leaves out ss10, so St.Helens has a dotted zero and Mt.Baker a plain one |
 

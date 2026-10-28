@@ -70,6 +70,6 @@ after CI passes.
 
 | Bump | When |
 |---|---|
-| Major | A family is renamed or removed, or its spacing or design defaults change |
-| Minor | An upstream version or a stylistic set changes, or a family or glyph coverage is added |
+| Major | A family is renamed or removed, its spacing changes, or its design changes style (casual or linear, cursive or roman) |
+| Minor | An upstream version, axis value (slant, weight), or stylistic set changes, or a family or glyph coverage is added |
 | Patch | Metadata, naming, or build fixes that leave the glyphs unchanged |
