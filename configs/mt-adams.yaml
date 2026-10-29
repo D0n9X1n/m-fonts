@@ -1,0 +1,18 @@
+# Rec Serif Mt.Adams — Anthropic Serif Text, proportional, for reading
+#
+# Shares the CJK and Nerd Fonts merge with St.Helens and Mt.Baker, but its
+# Latin glyphs come from Anthropic Serif instead of Recursive.
+
+Family Name: Rec Serif Mt.Adams
+
+# anthropic-serif families are always proportional
+Base: anthropic-serif
+Mono: false
+
+# Anthropic Serif Text weight for each style. Bold uses Semibold to match the
+# other families' Bold (Recursive wght 600).
+Styles:
+  Regular:     Regular
+  Italic:      RegularItalic
+  Bold:        Semibold
+  Bold Italic: SemiboldItalic

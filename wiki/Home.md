@@ -2,13 +2,14 @@
 
 [简体中文](Home-zh-CN)
 
-Rec Mountain Fonts builds two font families from [Recursive](https://recursive.design),
-with CJK glyphs from Resource Han Rounded and the full Nerd Fonts icon set.
+Rec Mountain Fonts builds three font families, two from [Recursive](https://recursive.design)
+and one from Anthropic Serif, with CJK glyphs from Resource Han Rounded and the
+full Nerd Fonts icon set.
 **Start with [Installation](Installation)** to get the fonts onto your machine.
 
 ### Using the fonts
 
-- [Fonts](Fonts) — the two families, their shared design, and glyph coverage
+- [Fonts](Fonts) — the three families, their designs, and glyph coverage
 - [Installation](Installation) — install on macOS, Linux, and Windows, and upgrade from older names
 
 ### Building and changing the fonts

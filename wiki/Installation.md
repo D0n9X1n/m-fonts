@@ -4,7 +4,7 @@
 
 Download the fonts from the
 [latest release](https://github.com/D0n9X1n/rec-mountain-fonts/releases/latest). Each
-release has the eight `.ttf` files, `rec-mountain-fonts-<tag>.zip` with all eight, and
+release has the twelve `.ttf` files, `rec-mountain-fonts-<tag>.zip` with all twelve, and
 `SHA256SUMS.txt`.
 
 ## Install
@@ -29,6 +29,7 @@ Select the family by name. Apps that cache their font list need a restart.
 |---|---|
 | Terminal, editor | `Rec Mono St.Helens` |
 | Documents, UI | `Rec Sans Mt.Baker` |
+| Long-form reading | `Rec Serif Mt.Adams` |
 
 ## Upgrade from older releases
 

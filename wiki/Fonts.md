@@ -2,8 +2,9 @@
 
 [简体中文](Fonts-zh-CN)
 
-Rec Mountain Fonts ships two families that share one design. St.Helens is for code; Mt.Baker
-is the same letterforms with natural widths for everyday text.
+Rec Mountain Fonts ships three families. St.Helens (for code) and Mt.Baker (the same
+letterforms with natural widths, for everyday text) share one Recursive design;
+Mt.Adams is a serif for long-form reading, built from Anthropic Serif Text.
 
 ## Preview
 
@@ -11,7 +12,7 @@ is the same letterforms with natural widths for everyday text.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/rec-mountain-fonts/main/docs/previews/styles-dark.png">
-  <img alt="Regular, Italic, Bold, and Bold Italic of both families" src="https://raw.githubusercontent.com/D0n9X1n/rec-mountain-fonts/main/docs/previews/styles-light.png" width="800">
+  <img alt="Regular, Italic, Bold, and Bold Italic of all three families" src="https://raw.githubusercontent.com/D0n9X1n/rec-mountain-fonts/main/docs/previews/styles-light.png" width="800">
 </picture>
 
 ### Code
@@ -42,6 +43,13 @@ is the same letterforms with natural widths for everyday text.
   <img alt="English, Chinese, and Japanese paragraphs in Rec Sans Mt.Baker" src="https://raw.githubusercontent.com/D0n9X1n/rec-mountain-fonts/main/docs/previews/text-light.png" width="800">
 </picture>
 
+### Serif
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D0n9X1n/rec-mountain-fonts/main/docs/previews/serif-dark.png">
+  <img alt="English, Chinese, and Japanese paragraphs in Rec Serif Mt.Adams" src="https://raw.githubusercontent.com/D0n9X1n/rec-mountain-fonts/main/docs/previews/serif-light.png" width="800">
+</picture>
+
 ### Glyph coverage
 
 <picture>
@@ -55,10 +63,11 @@ is the same letterforms with natural widths for everyday text.
 |---|---|---|---|
 | **Rec Mono St.Helens** | Editors and terminals | Monospace, 600-unit cell | Yes |
 | **Rec Sans Mt.Baker** | Documents and UI | Proportional | No |
+| **Rec Serif Mt.Adams** | Articles, notes, and e-books | Proportional | No |
 
 Each family has four styles: Regular, Italic, Bold, and Bold Italic.
 
-## Shared design
+## St.Helens and Mt.Baker design
 
 Both families come from one config (`configs/st-helens.yaml`); Mt.Baker changes
 its name and spacing and drops the dotted zero. See [Configuration](Configuration).
@@ -67,7 +76,7 @@ its name and spacing and drops the dotted zero. See [Configuration](Configuratio
 |---|---|
 | Casual (`CASL`) | 1 — the casual, brush-like Recursive design |
 | Cursive (`CRSV`) | 1 — cursive letterforms |
-| Slant (`slnt`) | -2° for Regular and Bold, -10° for Italic and Bold Italic |
+| Slant (`slnt`) | -3° for Regular and Bold, -10° for Italic and Bold Italic |
 | Weight (`wght`) | 400 for Regular and Italic, 600 for Bold and Bold Italic |
 | Stylistic sets | ss01–ss12; Mt.Baker leaves out ss10, so St.Helens has a dotted zero and Mt.Baker a plain one |
 
@@ -75,27 +84,44 @@ Recursive's ss01–ss06 alternates apply only to Roman (`CRSV 0`) glyphs, so the
 have no visible effect with `CRSV 1`. They stay in the config so a Roman family
 can reuse it.
 
+## Mt.Adams design
+
+Mt.Adams (`configs/mt-adams.yaml`) takes each style from a static Anthropic
+Serif Text weight:
+
+| Style | Anthropic Serif Text weight |
+|---|---|
+| Regular | Regular |
+| Italic | Italic (-10°) |
+| Bold | Semibold, to match the other families' wght 600 |
+| Bold Italic | Semibold Italic |
+
+The build converts its CFF outlines to TrueType at 1000 units per em, so the
+CJK merge and the icons line up as they do in the Recursive families.
+
 ## Glyph coverage
 
 | Source | Coverage |
 |---|---|
 | Recursive | Latin (including Vietnamese), 20 mathematical Greek letters, box drawing, blocks, punctuation, and symbols. No Cyrillic. |
+| Anthropic Serif Text (Mt.Adams) | Latin-1 and all of Latin Extended-A (Western and Central European), punctuation, and symbols. No Vietnamese, Greek, Cyrillic, or box drawing. |
 | Resource Han Rounded CN | CJK ideographs (20,976 in U+4E00–9FFF), kana, CJK punctuation, full-width and halfwidth forms |
 | Nerd Fonts | Every icon set the patcher's `--complete` option adds, including Powerline |
 
 CJK glyphs come from Resource Han Rounded's Regular weight for Regular and
-Italic, and its Bold weight for Bold and Bold Italic. They are scaled 1.15×
-relative to Recursive's line height. Hangul syllables are not included.
+Italic, and its Bold weight for Bold and Bold Italic. In every family they are
+scaled 1.1× relative to the Latin font's line height. Hangul syllables are not
+included.
 
 ## Spacing differences
 
-| Glyph group | St.Helens | Mt.Baker |
-|---|---|---|
-| ASCII | Always 600 | Natural width (for example `i` 350, `m` 850) |
-| CJK and full-width forms | 1200 (two cells) | Scaled source width (1150) |
-| Halfwidth forms | 600 (one cell) | Scaled source width (575) |
-| Nerd Font icons | Two cells, centred | Natural width |
-| Code ligatures (`=>`, `!=`) | On by default | Off |
+| Glyph group | St.Helens | Mt.Baker | Mt.Adams |
+|---|---|---|---|
+| ASCII | Always 600 | Natural width (for example `i` 350, `m` 850) | Natural width (for example `i` 300, `m` 944) |
+| CJK and full-width forms | 1200 (two cells) | Scaled source width (1100) | Scaled source width (1100) |
+| Halfwidth forms | 600 (one cell) | Scaled source width (550) | Scaled source width (550) |
+| Nerd Font icons | Two cells, centred | Natural width | Natural width |
+| Code ligatures (`=>`, `!=`) | On by default | Off | None |
 
 St.Helens also sets the flags Windows Terminal and DirectWrite need to keep
 ASCII text on the cell grid; see [Build Pipeline](Build-Pipeline).

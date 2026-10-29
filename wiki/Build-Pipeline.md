@@ -8,7 +8,7 @@ Stages 2 and 3 run the four styles in parallel; each job writes its own log unde
 
 ```mermaid
 flowchart LR
-    vf["Recursive variable font"] --> s1["1 · instantiate-fonts.py<br/>4 static styles"]
+    vf["Recursive variable font<br/>or Anthropic Serif Text"] --> s1["1 · instantiate-fonts.py<br/>4 static styles"]
     s1 --> s2["2 · merge-cjk.py<br/>Resource Han Rounded"]
     s2 --> s3["3 · Nerd Fonts font-patcher<br/>--complete"]
     s3 --> s4["4 · finalize-fonts.py<br/>names and spacing flags"]
@@ -17,7 +17,8 @@ flowchart LR
 
 ## Stage 1: instantiate
 
-`scripts/instantiate-fonts.py` makes each style from the variable font:
+`scripts/instantiate-fonts.py` makes each style from the config's `Base`. For
+`recursive`, from the variable font:
 
 - pins the `MONO`, `CASL`, `wght`, `slnt`, and `CRSV` axes and removes overlaps
 - drops the `STAT` table so Windows links the four styles as one family
@@ -26,11 +27,18 @@ flowchart LR
 - sets the fixed-pitch flags, PANOSE proportion, style bits, and names
 - hints the font with ttfautohint
 
+For `anthropic-serif`, from the configured static weight:
+
+- scales the font from 2000 to 1000 units per em
+- converts its CFF outlines to quadratic TrueType outlines
+- drops `STAT` and sets the names, PANOSE proportion, and style bits
+- hints the font with ttfautohint
+
 ## Stage 2: merge CJK
 
 `scripts/merge-cjk.py` runs under FontForge. It copies the CJK, kana, and
 full-width/halfwidth ranges from Resource Han Rounded, scales them to fit
-Recursive's line height times the CJK scale (default 1.15), and centres them.
+the Latin font's line height times the CJK scale (default 1.1), and centres them.
 Mono families get exact cell widths; proportional families keep each glyph's
 own scaled width (`--proportional`).
 

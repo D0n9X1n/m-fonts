@@ -27,5 +27,6 @@ check() {
 check "Recursive" arrowtype/recursive "$RECURSIVE_VERSION"
 check "Resource Han Rounded" CyanoHao/Resource-Han-Rounded "$RESOURCE_HAN_ROUNDED_VERSION"
 check "Nerd Fonts" ryanoasis/nerd-fonts "$NERD_FONTS_VERSION"
+echo "· Anthropic Serif ${ANTHROPIC_SERIF_VERSION} is pinned by SHA-256 (no release feed to check)"
 
 exit "$outdated"

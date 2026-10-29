@@ -1,8 +1,10 @@
 # CLAUDE.md — Rec Mountain Fonts
 
-Rec Mountain Fonts builds two font families from Recursive, Resource Han Rounded, and Nerd
-Fonts: **Rec Mono St.Helens** (monospace, for code) and **Rec Sans Mt.Baker**
-(proportional, for text). Both share one design.
+Rec Mountain Fonts builds three font families with Resource Han Rounded CJK and Nerd
+Fonts: **Rec Mono St.Helens** (Recursive, monospace, for code), **Rec Sans
+Mt.Baker** (Recursive, proportional, for text), and **Rec Serif Mt.Adams**
+(Anthropic Serif Text, proportional, for reading). St.Helens and Mt.Baker share
+one design.
 
 ## Read first
 
@@ -22,6 +24,11 @@ against the current scripts and configs before writing them.
 - `configs/st-helens.yaml` is the shared design. Mt.Baker extends it and changes
   only its name, `Mono: false`, and `Exclude Features: [ss10]` (plain zero); keep
   it that way unless asked otherwise.
+- `configs/mt-adams.yaml` uses `Base: anthropic-serif`; Bold and Bold Italic map
+  to the Semibold weights to match the Recursive families' wght 600. Anthropic
+  Serif has no release feed, so its files are pinned by SHA-256 in
+  `scripts/fetch-sources.sh`; update those hashes with `ANTHROPIC_SERIF_VERSION`.
+- All families share one CJK scale (`build-all.sh` default 1.1).
 - Upstream versions live only in `versions.env`. Never vendor upstream fonts or
   the Nerd Fonts patcher into the repository; `sources/` is fetched and ignored.
 - Python dependencies are pinned exactly in `requirements.txt`.

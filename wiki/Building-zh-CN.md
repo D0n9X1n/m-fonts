@@ -2,7 +2,7 @@
 
 [English](Building)
 
-构建过程把固定版本的上游发布转换成八个发布字体，在本地和 CI 中的运行方式相同。
+构建过程把固定版本的上游发布转换成十二个发布字体，在本地和 CI 中的运行方式相同。
 
 ## 前置依赖
 
@@ -25,7 +25,7 @@ pip install -r requirements.txt
 ```bash
 ./scripts/build-all.sh                       # 并行构建 configs/ 中的所有字体
 ./scripts/build.sh configs/st-helens.yaml    # 只构建一套
-./scripts/build-all.sh 1.2                   # 覆盖中日文缩放比例（默认 1.15）
+./scripts/build-all.sh 1.2                   # 覆盖中日文缩放比例（默认 1.1）
 ```
 
 输出位于 `fonts/<紧凑字体名>/`，例如
@@ -39,6 +39,7 @@ pip install -r requirements.txt
 | 目录 | 内容 |
 |---|---|
 | `sources/recursive/` | `Recursive_VF_<版本>.ttf` 和代码连字特性文件 |
+| `sources/anthropic-serif/` | 四个 Anthropic Serif Text `.otf` 文件，每个都按固定的 SHA-256 校验 |
 | `sources/resource-han-rounded/` | `ResourceHanRoundedCN-Regular.ttf` 和 `-Bold.ttf` |
 | `sources/nerd-fonts-patcher/` | Nerd Fonts 的 `font-patcher` 及其图标源文件 |
 

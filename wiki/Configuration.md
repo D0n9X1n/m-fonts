@@ -7,13 +7,14 @@ Each family is one YAML file in `configs/`. Upstream versions live in
 
 ## Family configs
 
-`configs/st-helens.yaml` holds the shared design:
+`configs/st-helens.yaml` holds the shared Recursive design:
 
 | Key | Meaning |
 |---|---|
 | `Family Name` | Full family name, for example `Rec Mono St.Helens`. File and PostScript names drop the spaces. |
-| `Mono` | `true` builds a monospace family (`MONO 1`); `false` builds a proportional one (`MONO 0`) |
-| `Styles` | `CASL`, `wght`, `slnt`, and `CRSV` for each of Regular, Italic, Bold, and Bold Italic |
+| `Base` | Latin source: `recursive` (default) or `anthropic-serif` |
+| `Mono` | `true` builds a monospace family (`MONO 1`); `false` builds a proportional one (`MONO 0`). Must be `false` for `anthropic-serif`. |
+| `Styles` | For `recursive`: `CASL`, `wght`, `slnt`, and `CRSV` for each of Regular, Italic, Bold, and Bold Italic. For `anthropic-serif`: the source weight for each style. |
 | `Code Ligatures` | Turn Recursive's code ligatures on by default. Applied to mono families only. |
 | `Features` | Stylistic sets frozen into the fonts |
 | `Exclude Features` | Stylistic sets to remove from the inherited `Features` |
@@ -34,6 +35,25 @@ Exclude Features:
 parent's. `Exclude Features` then removes sets from the inherited `Features`;
 naming a set that is not enabled is an error. Any other change to St.Helens's
 styles or features therefore applies to Mt.Baker too.
+
+`configs/mt-adams.yaml` stands alone:
+
+```yaml
+Family Name: Rec Serif Mt.Adams
+
+Base: anthropic-serif
+Mono: false
+
+Styles:
+  Regular:     Regular
+  Italic:      RegularItalic
+  Bold:        Semibold
+  Bold Italic: SemiboldItalic
+```
+
+Each `Styles` value names an Anthropic Serif Text file that
+`scripts/fetch-sources.sh` downloads: `Regular`, `RegularItalic`, `Semibold`, or
+`SemiboldItalic`. Bold uses Semibold to match the Recursive families' wght 600.
 
 ## Code ligatures
 
@@ -66,12 +86,16 @@ even if `Code Ligatures` is `true`.
 
 ```bash
 RECURSIVE_VERSION=1.085
+ANTHROPIC_SERIF_VERSION=25.324
 RESOURCE_HAN_ROUNDED_VERSION=0.990
 NERD_FONTS_VERSION=3.5.1
 ```
 
 `./scripts/check-updates.sh` compares these with the latest GitHub releases,
-ignoring pre-releases, and exits 1 if any is behind. To update one, change the
+ignoring pre-releases, and exits 1 if any is behind. Anthropic Serif has no
+release feed: `ANTHROPIC_SERIF_VERSION` is its name-table version, and
+`scripts/fetch-sources.sh` pins each of its files by SHA-256, so change the
+hashes there together with the version. To update one, change the
 version, also update the version badges in `README.md` and the block above in
 both Configuration pages (the local gate fails until they match), run
 `./scripts/local-gate.sh --build`, and check the result in an editor before
@@ -79,7 +103,8 @@ merging.
 
 ## Adding a family
 
-1. Add `configs/<name>.yaml`, usually with `Extends: st-helens.yaml`.
+1. Add `configs/<name>.yaml`, usually with `Extends: st-helens.yaml` for a
+   Recursive family or `Base: anthropic-serif` for a serif one.
 2. Run `./scripts/build.sh configs/<name>.yaml`.
 
 `build-all.sh`, the verifier, CI, and release packaging pick up every file in

@@ -24,14 +24,16 @@ echo "# Rec Mountain Fonts ${TAG}"
 echo
 echo "| Family | Spacing |"
 echo "|---|---|"
-# Mono families first, then proportional
-for want in 1 0; do
+# Mono families first, then proportional sans, then serif
+for want in 1:recursive 0:recursive 0:anthropic-serif; do
     for cfg in configs/*.yaml; do
         (
             eval "$(python3 scripts/fontconfig.py "$cfg")"
-            [ "$MONO" = "$want" ] || exit 0
+            [ "${MONO}:${BASE}" = "$want" ] || exit 0
             if [ "$MONO" = 1 ]; then
                 echo "| **${FAMILY}** | Monospace, code ligatures |"
+            elif [ "$BASE" = anthropic-serif ]; then
+                echo "| **${FAMILY}** | Proportional serif |"
             else
                 echo "| **${FAMILY}** | Proportional |"
             fi
@@ -39,7 +41,7 @@ for want in 1 0; do
     done
 done
 echo
-echo "Built from Recursive ${RECURSIVE_VERSION}, Resource Han Rounded ${RESOURCE_HAN_ROUNDED_VERSION}, and Nerd Fonts ${NERD_FONTS_VERSION}."
+echo "Built from Recursive ${RECURSIVE_VERSION}, Anthropic Serif ${ANTHROPIC_SERIF_VERSION}, Resource Han Rounded ${RESOURCE_HAN_ROUNDED_VERSION}, and Nerd Fonts ${NERD_FONTS_VERSION}."
 echo
 echo "## Install"
 echo

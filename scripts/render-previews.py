@@ -61,32 +61,34 @@ LIGATURES = [
 
 
 class Families:
-    """Font files for the mono and the proportional family, read from configs/."""
+    """Font files for the mono, sans, and serif families, read from configs/."""
+
+    KEYS = ("mono", "sans", "serif")
 
     def __init__(self, fonts_dir):
-        self.mono = self.sans = None
+        self.entries = {}
         for config_path in sorted(Path("configs").glob("*.yaml")):
             cfg = fontconfig.load(config_path)
             files = {s: fonts_dir / cfg["compact"] / style_file_name(cfg["compact"], s) for s in STYLES}
             missing = [str(p) for p in files.values() if not p.is_file()]
             if missing:
                 sys.exit(f"ERROR: missing {', '.join(missing)} — run ./scripts/build-all.sh first")
-            entry = (cfg["family"], files)
-            if cfg["mono"]:
-                self.mono = entry
-            else:
-                self.sans = entry
-        if not (self.mono and self.sans):
-            sys.exit("ERROR: previews need one mono and one proportional family in configs/")
+            key = "serif" if cfg["base"] == "anthropic-serif" else "mono" if cfg["mono"] else "sans"
+            self.entries[key] = (cfg["family"], files)
+        if set(self.entries) != set(self.KEYS):
+            sys.exit("ERROR: previews need one mono, one sans, and one serif family in configs/")
 
-        cmap = TTFont(self.mono[1]["Regular"]).getBestCmap()
-        absent = [name for name, ch in ICONS.items() if ord(ch) not in cmap]
-        if absent:
-            sys.exit(f"ERROR: icons missing from {self.mono[0]}: {', '.join(absent)}")
+        for key in self.KEYS:
+            cmap = TTFont(self.entries[key][1]["Regular"]).getBestCmap()
+            absent = [name for name, ch in ICONS.items() if ord(ch) not in cmap]
+            if absent:
+                sys.exit(f"ERROR: icons missing from {self.entries[key][0]}: {', '.join(absent)}")
 
-    def font(self, family, style, size):
-        files = (self.mono if family == "mono" else self.sans)[1]
-        return load_font(str(files[style]), size)
+    def name(self, key):
+        return self.entries[key][0]
+
+    def font(self, key, style, size):
+        return load_font(str(self.entries[key][1][style]), size)
 
 
 @functools.lru_cache(maxsize=None)
@@ -141,7 +143,7 @@ class Card:
 # ── Code ─────────────────────────────────────────────────────────────────────
 
 CODE = """\
-// Pick a family for some text: mono for code, sans for prose
+// Pick a family for some text: mono for code, sans or serif for prose
 type Spacing = "mono" | "proportional";
 
 interface Family {
@@ -153,6 +155,7 @@ interface Family {
 const families: Family[] = [
   { name: "Rec Mono St.Helens", spacing: "mono", cjk: true },
   { name: "Rec Sans Mt.Baker", spacing: "proportional", cjk: true },
+  { name: "Rec Serif Mt.Adams", spacing: "proportional", cjk: true },
 ];
 
 export async function pick(cp: number, code = true): Promise<Family> {
@@ -267,13 +270,15 @@ def render_terminal(fam, card):
     prompt(y, "./scripts/build-all.sh")
     for line, color in [("✓ Rec Mono St.Helens: 4 styles verified (mono)", "green"),
                         ("✓ Rec Sans Mt.Baker: 4 styles verified (proportional)", "green"),
+                        ("✓ Rec Serif Mt.Adams: 4 styles verified (proportional)", "green"),
                         ("=== All fonts built ===", "muted")]:
         y += lh
         card.text(x0, y, line, font, color)
 
     y += lh * 1.6
     rows = [("字体", "用途", "字宽"), ("Rec Mono St.Helens", "代码、终端", "等宽"),
-            ("Rec Sans Mt.Baker", "文档、界面", "比例")]
+            ("Rec Sans Mt.Baker", "文档、界面", "比例"),
+            ("Rec Serif Mt.Adams", "长文阅读", "比例")]
     widths = (22, 14, 6)
     border = "─" * (sum(widths) + 2)
     box_lh = (ascent + descent) / SCALE  # box glyphs span exactly one line box
@@ -304,7 +309,7 @@ def render_ligatures(fam, card):
     label = fam.font("sans", "Regular", 12.5)
     y = PAD + 18
     card.text(PAD, y, "Code ligatures", title, "bright")
-    card.text(PAD + card.width("Code ligatures", title) + 12, y, "on by default in Rec Mono St.Helens; off in Rec Sans Mt.Baker", label, "muted")
+    card.text(PAD + card.width("Code ligatures", title) + 12, y, "on by default in Rec Mono St.Helens; off in the proportional families", label, "muted")
     cols, cell_w, cell_h = 6, (WIDTH - 2 * PAD) / 6, 74
     top = y + 18
     for i, seq in enumerate(LIGATURES):
@@ -329,8 +334,10 @@ def render_styles(fam, card):
     samples = {
         "mono": "Quick brown fox -> 0O 1lI {}[] 字形",
         "sans": "The quick brown fox jumps · 中文排版",
+        "serif": "The quick brown fox jumps · 中文排版",
     }
-    for key, (family, _) in (("mono", fam.mono), ("sans", fam.sans)):
+    for key in Families.KEYS:
+        family = fam.name(key)
         y += 18
         card.text(PAD, y, family.upper(), head, "muted")
         y += 8
@@ -360,15 +367,25 @@ def wrap(card, text, font, max_width):
     return lines
 
 
-def render_text(fam, card):
-    title = fam.font("sans", "Bold", 30)
-    sub = fam.font("sans", "Italic", 15)
+def render_paragraphs(fam, card, key, subtitle, paragraphs):
+    title = fam.font(key, "Bold", 30)
+    sub = fam.font(key, "Italic", 15)
     body_w = WIDTH - 2 * PAD
     y = PAD + 26
-    card.text(PAD, y, "Rec Sans Mt.Baker", title, "bright")
+    card.text(PAD, y, fam.name(key), title, "bright")
     y += 26
-    card.text(PAD, y, "St.Helens's letterforms at their natural widths, for documents and UI.", sub, "muted")
-    paragraphs = [
+    card.text(PAD, y, subtitle, sub, "muted")
+    for style, size, color, text in paragraphs:
+        font = fam.font(key, style, size)
+        y += 14
+        for line in wrap(card, text, font, body_w):
+            y += size * 1.6
+            card.text(PAD, y, line, font, color)
+    return y + PAD
+
+
+def render_text(fam, card):
+    return render_paragraphs(fam, card, "sans", "St.Helens's letterforms at their natural widths, for documents and UI.", [
         ("Regular", 16.5, "fg", "Recursive is a variable typeface inspired by casual script signpainting. "
                                 "Mt.Baker keeps every letter at its natural width, so notes, documents, and "
                                 "interfaces read like prose rather than code — numbers like 0123456789 included."),
@@ -378,14 +395,20 @@ def render_text(fam, card):
                                 "适合文档、笔记和界面；在 St.Helens 中，每个汉字占两个字符宽，与代码对齐。"),
         ("Regular", 16.5, "fg", "ひらがな・カタカナ・漢字も、同じ丸みのある書体で表示されます。"),
         ("Bold", 16.5, "accent", "Bold — The quick brown fox jumps over the lazy dog. 敏捷的棕色狐狸。"),
-    ]
-    for style, size, color, text in paragraphs:
-        font = fam.font("sans", style, size)
-        y += 14
-        for line in wrap(card, text, font, body_w):
-            y += size * 1.6
-            card.text(PAD, y, line, font, color)
-    return y + PAD
+    ])
+
+
+def render_serif(fam, card):
+    return render_paragraphs(fam, card, "serif", "Anthropic Serif Text with Resource Han Rounded, for long-form reading.", [
+        ("Regular", 17, "fg", "Mt.Adams pairs a book serif with the same CJK glyphs and Nerd Font icons as "
+                              "the other two families, so articles, notes, and e-books can switch fonts without "
+                              "losing Chinese, Japanese, or icons — figures like 0123456789 included."),
+        ("Italic", 17, "fg", "Italic is for emphasis, titles of works, and asides; Bold uses the semibold "
+                             "weight so it matches St.Helens and Mt.Baker."),
+        ("Regular", 17, "fg", "资源圆体为 Mt.Adams 提供中文与日文字形，以比例宽度与衬线字母并排。"),
+        ("Regular", 17, "fg", "ひらがな・カタカナ・漢字も、同じ丸みのある書体で表示されます。"),
+        ("Bold", 17, "accent", "Bold — The quick brown fox jumps over the lazy dog. 敏捷的棕色狐狸。"),
+    ])
 
 
 # ── Glyphs ───────────────────────────────────────────────────────────────────
@@ -422,13 +445,18 @@ def render_glyphs(fam, card):
 # ── Hero ─────────────────────────────────────────────────────────────────────
 
 def render_hero(fam, card):
+    big = fam.font("sans", "Italic", 110)
+    w = card.width("Aa永", big)
+    card.text(WIDTH - PAD - w, PAD + 112, "Aa永", big, "selection")
     y = PAD + 46
     card.text(PAD, y, "Rec Mono St.Helens", fam.font("mono", "Bold", 40), "bright")
     y += 54
     card.text(PAD, y, "Rec Sans Mt.Baker", fam.font("sans", "Bold Italic", 40), "accent")
+    y += 54
+    card.text(PAD, y, "Rec Serif Mt.Adams", fam.font("serif", "Bold", 40), "blue")
     y += 34
     sub = fam.font("sans", "Regular", 15.5)
-    card.text(PAD, y, "Recursive  ·  资源圆体 Resource Han Rounded  ·  Nerd Fonts", sub, "muted")
+    card.text(PAD, y, "Recursive  ·  Anthropic Serif  ·  资源圆体 Resource Han Rounded  ·  Nerd Fonts", sub, "muted")
     mono = fam.font("mono", "Regular", 17)
     y += 38
     x = PAD
@@ -437,9 +465,6 @@ def render_hero(fam, card):
                         ("; ", "fg"), ("// 中文 ", "muted"), (ICONS["github"] + " " + ICONS["apple"] + " "
                                                             + ICONS["python"] + " " + ICONS["rust"], "magenta")]:
         x += card.text(x, y, text, fam.font("mono", "Italic", 17) if text.startswith("//") else mono, color)
-    big = fam.font("sans", "Italic", 110)
-    w = card.width("Aa永", big)
-    card.text(WIDTH - PAD - w, PAD + 112, "Aa永", big, "selection")
     return y + PAD
 
 
@@ -450,6 +475,7 @@ PREVIEWS = {
     "ligatures": render_ligatures,
     "styles": render_styles,
     "text": render_text,
+    "serif": render_serif,
     "glyphs": render_glyphs,
 }
 

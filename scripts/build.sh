@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# build.sh — Build one font family: Recursive + Resource Han Rounded + Nerd Fonts
+# build.sh — Build one font family: Recursive or Anthropic Serif + Resource Han Rounded + Nerd Fonts
 #
 # Usage:
 #   ./scripts/build.sh <config.yaml> [cjk_scale]
@@ -12,7 +12,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 CONFIG="${1:?Usage: $0 <config.yaml> [cjk_scale]}"
-CJK_SCALE="${2:-1.15}"
+CJK_SCALE="${2:-1.1}"
 
 if [ -f venv/bin/activate ]; then
     source venv/bin/activate
@@ -20,10 +20,15 @@ fi
 
 ./scripts/fetch-sources.sh
 source versions.env
-eval "$(python3 scripts/fontconfig.py "$CONFIG")"  # FAMILY, COMPACT, MONO
+eval "$(python3 scripts/fontconfig.py "$CONFIG")"  # FAMILY, COMPACT, MONO, BASE
 
-VF="sources/recursive/Recursive_VF_${RECURSIVE_VERSION}.ttf"
-FEA="sources/recursive/calt-generated--code_fonts_only.fea"
+if [ "$BASE" = recursive ]; then
+    LATIN="Recursive ${RECURSIVE_VERSION}"
+    LATIN_SOURCES=("sources/recursive/Recursive_VF_${RECURSIVE_VERSION}.ttf" "sources/recursive/calt-generated--code_fonts_only.fea")
+else
+    LATIN="Anthropic Serif ${ANTHROPIC_SERIF_VERSION}"
+    LATIN_SOURCES=("sources/anthropic-serif")
+fi
 CJK_DIR="sources/resource-han-rounded"
 PATCHER="sources/nerd-fonts-patcher/font-patcher"
 
@@ -70,8 +75,8 @@ wait_jobs() {
 
 echo "=== Building ${FAMILY} ($([ "$MONO" = 1 ] && echo mono || echo proportional), CJK scale ${CJK_SCALE}) ==="
 
-echo "── 1/4 Instantiate styles from Recursive ${RECURSIVE_VERSION} ──"
-python3 scripts/instantiate-fonts.py "$CONFIG" "$VF" "$FEA" "$WORK/1-instance"
+echo "── 1/4 Instantiate styles from ${LATIN} ──"
+python3 scripts/instantiate-fonts.py "$CONFIG" "${LATIN_SOURCES[@]}" "$WORK/1-instance"
 
 echo "── 2/4 Merge Resource Han Rounded ${RESOURCE_HAN_ROUNDED_VERSION} ──"
 for style in "${STYLES[@]}"; do

@@ -1,7 +1,7 @@
-"""Stage 2: merge CJK glyphs from Resource Han Rounded into a Rec font.
+"""Stage 2: merge CJK glyphs from Resource Han Rounded into a Rec Mountain font.
 
 Run with FontForge's Python:
-    fontforge -script scripts/merge-cjk.py <target.ttf> <cjk.ttf> <output.ttf> [--scale 1.15] [--proportional]
+    fontforge -script scripts/merge-cjk.py <target.ttf> <cjk.ttf> <output.ttf> [--scale 1.1] [--proportional]
 
 CJK glyphs are scaled to fit the target's typo ascender/descender (then by
 --scale), centred vertically on that body and horizontally in their advance.
@@ -90,7 +90,7 @@ def main():
     parser.add_argument("target")
     parser.add_argument("cjk")
     parser.add_argument("output")
-    parser.add_argument("--scale", type=float, default=1.0, help="CJK size multiplier (e.g. 1.15)")
+    parser.add_argument("--scale", type=float, default=1.0, help="CJK size multiplier (e.g. 1.1)")
     parser.add_argument("--proportional", action="store_true", help="keep proportional CJK advances")
     args = parser.parse_args()
     merge_cjk(args.target, args.cjk, args.output, args.scale, args.proportional)

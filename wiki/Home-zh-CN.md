@@ -2,13 +2,13 @@
 
 [English](Home)
 
-Rec Mountain Fonts 基于 [Recursive](https://recursive.design) 构建两套字体，
-并合入资源圆体（Resource Han Rounded）的中日文字形和完整的 Nerd Fonts 图标集。
+Rec Mountain Fonts 构建三套字体：两套基于 [Recursive](https://recursive.design)，一套基于
+Anthropic Serif，并合入资源圆体（Resource Han Rounded）的中日文字形和完整的 Nerd Fonts 图标集。
 **先读[安装](Installation-zh-CN)**，把字体装到你的电脑上。
 
 ### 使用字体
 
-- [字体](Fonts-zh-CN) — 两套字体、共同的设计和字形覆盖范围
+- [字体](Fonts-zh-CN) — 三套字体、各自的设计和字形覆盖范围
 - [安装](Installation-zh-CN) — 在 macOS、Linux 和 Windows 上安装，以及从旧名称升级
 
 ### 构建与修改字体

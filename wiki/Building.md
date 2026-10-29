@@ -2,7 +2,7 @@
 
 [简体中文](Building-zh-CN)
 
-The build turns pinned upstream releases into the eight release fonts. It runs
+The build turns pinned upstream releases into the twelve release fonts. It runs
 the same way locally and in CI.
 
 ## Prerequisites
@@ -26,7 +26,7 @@ pip install -r requirements.txt
 ```bash
 ./scripts/build-all.sh                       # every family in configs/, in parallel
 ./scripts/build.sh configs/st-helens.yaml    # one family
-./scripts/build-all.sh 1.2                   # override the CJK scale (default 1.15)
+./scripts/build-all.sh 1.2                   # override the CJK scale (default 1.1)
 ```
 
 Output goes to `fonts/<CompactFamily>/`, for example
@@ -41,6 +41,7 @@ pinned in `versions.env` into `sources/`:
 | Directory | Contents |
 |---|---|
 | `sources/recursive/` | `Recursive_VF_<version>.ttf` and the code-ligature feature file |
+| `sources/anthropic-serif/` | Four Anthropic Serif Text `.otf` files, each checked against its pinned SHA-256 |
 | `sources/resource-han-rounded/` | `ResourceHanRoundedCN-Regular.ttf` and `-Bold.ttf` |
 | `sources/nerd-fonts-patcher/` | The Nerd Fonts `font-patcher` and its glyph sources |
 

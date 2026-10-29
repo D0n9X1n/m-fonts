@@ -1,7 +1,7 @@
 # Rec Mono St.Helens — casual, cursive Recursive for coding
 #
 # Rec Sans Mt.Baker (mt-baker.yaml) extends this file, so changes here apply
-# to both families.
+# to both families. Rec Serif Mt.Adams (mt-adams.yaml) is separate.
 
 Family Name: Rec Mono St.Helens
 
@@ -14,9 +14,9 @@ Mono: true
 #   slnt  0 to -15 (degrees of slant; more negative = more slanted)
 #   CRSV  0 = Roman, 1 = Cursive
 Styles:
-  Regular:     { CASL: 1, wght: 400, slnt: -2,  CRSV: 1 }
+  Regular:     { CASL: 1, wght: 400, slnt: -3,  CRSV: 1 }
   Italic:      { CASL: 1, wght: 400, slnt: -10, CRSV: 1 }
-  Bold:        { CASL: 1, wght: 600, slnt: -2,  CRSV: 1 }
+  Bold:        { CASL: 1, wght: 600, slnt: -3,  CRSV: 1 }
   Bold Italic: { CASL: 1, wght: 600, slnt: -10, CRSV: 1 }
 
 # Turn code ligatures (=>, !=, ...) on by default. Applied to mono families only.

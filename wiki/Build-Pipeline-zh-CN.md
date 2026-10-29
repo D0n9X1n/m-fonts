@@ -7,7 +7,7 @@
 
 ```mermaid
 flowchart LR
-    vf["Recursive 可变字体"] --> s1["1 · instantiate-fonts.py<br/>4 个静态样式"]
+    vf["Recursive 可变字体<br/>或 Anthropic Serif Text"] --> s1["1 · instantiate-fonts.py<br/>4 个静态样式"]
     s1 --> s2["2 · merge-cjk.py<br/>资源圆体"]
     s2 --> s3["3 · Nerd Fonts font-patcher<br/>--complete"]
     s3 --> s4["4 · finalize-fonts.py<br/>名称和字宽标志"]
@@ -16,7 +16,7 @@ flowchart LR
 
 ## 阶段 1：实例化
 
-`scripts/instantiate-fonts.py` 从可变字体生成每种样式：
+`scripts/instantiate-fonts.py` 按配置的 `Base` 生成每种样式。`recursive` 从可变字体生成：
 
 - 固定 `MONO`、`CASL`、`wght`、`slnt` 和 `CRSV` 轴，并移除重叠轮廓
 - 删除 `STAT` 表，让 Windows 把四种样式识别为同一字体家族
@@ -25,10 +25,17 @@ flowchart LR
 - 设置等宽标志、PANOSE 比例、样式位和名称
 - 用 ttfautohint 添加微调指令
 
+`anthropic-serif` 从配置的静态字重生成：
+
+- 把字体从每 em 2000 单位缩放到 1000 单位
+- 把 CFF 轮廓转换为二次 TrueType 轮廓
+- 删除 `STAT`，并设置名称、PANOSE 比例和样式位
+- 用 ttfautohint 添加微调指令
+
 ## 阶段 2：合入中日文
 
 `scripts/merge-cjk.py` 在 FontForge 中运行。它从资源圆体复制汉字、假名以及全角/半角区段，
-按 Recursive 行高乘以中日文缩放比例（默认 1.15）缩放并居中。等宽字体使用精确的单元格宽度；
+按拉丁字体的行高乘以中日文缩放比例（默认 1.1）缩放并居中。等宽字体使用精确的单元格宽度；
 比例字体保留每个字形自身缩放后的宽度（`--proportional`）。
 
 ## 阶段 3：Nerd Fonts

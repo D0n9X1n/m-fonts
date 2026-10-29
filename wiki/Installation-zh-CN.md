@@ -3,7 +3,7 @@
 [English](Installation)
 
 从[最新发布](https://github.com/D0n9X1n/rec-mountain-fonts/releases/latest)下载字体。每个发布包含
-八个 `.ttf` 文件、含全部八个文件的 `rec-mountain-fonts-<tag>.zip`，以及 `SHA256SUMS.txt`。
+十二个 `.ttf` 文件、含全部十二个文件的 `rec-mountain-fonts-<tag>.zip`，以及 `SHA256SUMS.txt`。
 
 ## 安装字体
 
@@ -27,6 +27,7 @@ shasum -a 256 --check SHA256SUMS.txt   # Linux：sha256sum --check SHA256SUMS.tx
 |---|---|
 | 终端、编辑器 | `Rec Mono St.Helens` |
 | 文档、界面 | `Rec Sans Mt.Baker` |
+| 长文阅读 | `Rec Serif Mt.Adams` |
 
 ## 从旧版本升级
 
